@@ -1,0 +1,17 @@
+.list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.button {
+    padding: 8px 15px;
+    border: 0;
+    border-bottom: 3px solid whitesmoke;
+    background: transparent;
+    cursor: pointer;
+}
+
+.selected {
+    border: 0;
+    border-bottom: 3px solid red;
+}
