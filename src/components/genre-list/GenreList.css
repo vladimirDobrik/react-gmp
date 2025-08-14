@@ -1,9 +1,9 @@
-.list {
+.genre-list {
     display: flex;
     flex-wrap: wrap;
 }
 
-.button {
+.genre-button {
     padding: 8px 15px;
     border: 0;
     border-bottom: 3px solid whitesmoke;
@@ -11,7 +11,7 @@
     cursor: pointer;
 }
 
-.selected {
+.genre-button.selected {
     border: 0;
     border-bottom: 3px solid red;
 }

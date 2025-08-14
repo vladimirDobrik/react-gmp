@@ -1,6 +1,6 @@
 import React, { ChangeEvent, KeyboardEvent } from "react";
 import { SearchBarProps, SearchBarState } from "./models/search-bar.models";
-import "./Counter.css";
+import './SearchBar.css';
 
 class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
   constructor(props: SearchBarProps) {
@@ -31,9 +31,9 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
 
   render() {
     return (
-      <div className="search">
+      <div className="search-bar">
         <input
-          className="input"
+          className="search-input"
           type="text"
           value={this.state.query}
           onChange={this.handleChange}
@@ -41,7 +41,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
           placeholder="What do you want to watch?"
         />
         <button 
-            className="button" 
+            className="search-button" 
             onClick={this.search}>
             Search
         </button>

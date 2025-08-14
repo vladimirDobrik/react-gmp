@@ -1,11 +1,11 @@
-.search {
+.search-bar {
     display: flex;
     gap: 0.5rem;
 
     font-size: 1rem;
 }
 
-.input {
+.search-input {
     width: 100%;
     padding: 0 0.5rem;
     border: 1px solid #000;
@@ -15,7 +15,7 @@
     color: #000;
 }
 
-.button {
+.search-button {
     width: 233px;
     height: 57px;
     border: 1px solid #000;
@@ -25,4 +25,5 @@
     font-weight: 400;
     color: #fff;
     background-color: red;
+    cursor: pointer;
 }

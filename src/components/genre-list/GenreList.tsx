@@ -17,11 +17,11 @@ class GenreList extends React.Component<GenreListProps> {
     const { genres, selectedGenre } = this.props;
 
     return (
-      <div className='list'>
+      <div className='genre-list'>
         {genres.map((genre) => (
           <button
             key={genre}
-            className={`button ${genre === selectedGenre && 'selected'}`}
+            className={`genre-button ${genre === selectedGenre && 'selected'}`}
             onClick={() => this.handleSelect(genre)}
           >
             {genre}
