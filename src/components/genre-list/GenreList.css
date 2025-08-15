@@ -1,0 +1,17 @@
+.genre-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.genre-button {
+    padding: 8px 15px;
+    border: 0;
+    border-bottom: 3px solid whitesmoke;
+    background: transparent;
+    cursor: pointer;
+}
+
+.genre-button.selected {
+    border: 0;
+    border-bottom: 3px solid red;
+}
