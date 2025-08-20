@@ -27,17 +27,23 @@ class Counter extends React.Component<CounterProps, CounterState> {
       { style: { display: 'flex', alignItems: 'center', gap: '10px' } },
       React.createElement(
         'button',
-        { onClick: this.decrement },
+        { 
+          onClick: this.decrement,
+          'data-testid': 'decrement-button'
+        },
         '-'
       ),
       React.createElement(
         'span',
-        null,
+        { 'data-testid': 'counter-value' },
         this.state.value
       ),
       React.createElement(
         'button',
-        { onClick: this.increment },
+        { 
+          onClick: this.increment,
+          'data-testid': 'increment-button'
+        },
         '+'
       )
     );
