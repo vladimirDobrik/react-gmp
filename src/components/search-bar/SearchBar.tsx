@@ -33,6 +33,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     return (
       <div className="search-bar">
         <input
+          data-testid="search-input"
           className="search-input"
           type="text"
           value={this.state.query}
@@ -41,6 +42,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
           placeholder="What do you want to watch?"
         />
         <button 
+            data-testid='search-button'
             className="search-button" 
             onClick={this.search}>
             Search
