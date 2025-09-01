@@ -1,0 +1,37 @@
+.movie-menu-button {
+    all: unset;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    border-radius: 100%;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  
+  .movie-menu {
+    position: absolute;
+    top: 30px;
+    right: 5px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    z-index: 2;
+  }
+  
+  .movie-menu-item {
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    text-align: left;
+  }
+  
+  .movie-menu-item:hover {
+    background: #c7c7c7;
+  }
