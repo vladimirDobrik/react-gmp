@@ -1,0 +1,24 @@
+.sort-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sort-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #777;
+  white-space: nowrap;
+}
+
+.sort-select {
+  border: 0;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  min-width: 124px;
+}
+
+.sort-select:focus, .sort-select:hover {
+  outline: none;
+}

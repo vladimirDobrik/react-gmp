@@ -1,0 +1,16 @@
+.app-wrapper {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.app {
+    max-width: 1268px;
+}
+
+.sort-control-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
