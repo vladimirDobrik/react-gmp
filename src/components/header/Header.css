@@ -1,0 +1,14 @@
+.header {
+  background-color: #fff;
+  color: #777;
+  padding: 2rem 1rem;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

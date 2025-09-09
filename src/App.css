@@ -14,3 +14,12 @@
     align-items: center;
     padding: 1rem 2rem;
 }
+
+.add-movie {
+    all: unset;
+    cursor: pointer;
+    color: #fff;
+    padding: 1rem;
+    background-color: red;
+    float: right;
+}

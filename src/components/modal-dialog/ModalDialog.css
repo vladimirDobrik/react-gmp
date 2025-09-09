@@ -1,0 +1,50 @@
+.modal-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-dialog::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 30, 30, 0.7);
+}
+
+.modal-dialog-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min-content;
+    height: min-content;
+    max-width: 90vw;
+    max-height: 90vh;
+    padding: 32px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.modal-dialog-close {
+    all: unset;
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    cursor: pointer;
+}
+
+.modal-dialog-title {
+    white-space: nowrap;
+    margin: 0;
+}
+
+.modal-dialog-body {
+    margin: 16px 0;
+    overflow-y: auto;
+    max-height: calc(70vh - 50px);
+}
