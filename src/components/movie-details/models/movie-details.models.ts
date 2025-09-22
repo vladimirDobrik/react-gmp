@@ -8,4 +8,5 @@ export interface MovieDetailsInfo extends MovieInfo {
 
 export interface MovieDetailsProps {
   movie: MovieInfo;
+  onClose?: () => void;
 }

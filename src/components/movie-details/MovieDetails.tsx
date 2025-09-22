@@ -2,9 +2,11 @@ import React from 'react';
 import { MovieDetailsProps } from './models/movie-details.models';
 import './MovieDetails.css';
 
-const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
+const MovieDetails: React.FC<MovieDetailsProps> = ({ movie, onClose }) => {
+
   return (
     <div className="movie-details" data-testid="movie-details">
+      {onClose && <button className="movie-details-close" onClick={onClose}>X</button>}
       <div className="movie-poster-section">
         <img 
           className="movie-poster-large" 
