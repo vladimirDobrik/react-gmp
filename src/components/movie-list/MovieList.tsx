@@ -1,18 +1,17 @@
 import React from "react";
 import MovieTile from "../movie-tile/MovieTile";
-import { SearchResultProps } from "./models/search-result.models";
-import { mockedMovies } from '../../data/movies';
+import { MovieListProps } from "./models/movie-list.models";
 
-import './SearchResult.css';
+import './MovieList.css';
 
-const SearchResult: React.FC<SearchResultProps> = ({
-  movies = mockedMovies,
+const MovieList: React.FC<MovieListProps> = ({
+  movies = [],
   onSelectMovie,
   onEditMovie,
   onDeleteMovie,
 }) => {
   return (
-    <div className="search-result">
+    <div className="movie-list">
       {movies.map((movie) => (
         <MovieTile
           key={movie.id ?? movie.title}
@@ -26,4 +25,4 @@ const SearchResult: React.FC<SearchResultProps> = ({
   );
 };
 
-export default SearchResult;
+export default MovieList;

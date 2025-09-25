@@ -1,5 +1,5 @@
 export interface GenreListProps {
     genres: string[];
-    selectedGenre: string;
+    selectedGenre?: string | null;
     onSelect: (genre: string) => void;
 }
