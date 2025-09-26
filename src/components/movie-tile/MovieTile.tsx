@@ -11,7 +11,7 @@ const MovieTile: React.FC<MovieTileProps> = ({
   onDelete,
 }) => {
   const handleClick = () => {
-    onClick(movie);
+    onClick?.(movie);
   };
 
   return (
