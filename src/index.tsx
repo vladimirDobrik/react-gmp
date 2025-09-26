@@ -3,13 +3,43 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ErrorPage from './shared/error-apge/ErrorPage';
+import MovieDetailsWrapper from './components/movie-details-wrapper/MovieDetailsWrapper';
+
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <div />,
+      },
+      {
+        path: "/movies/:movieId",
+        element: <MovieDetailsWrapper />,
+      },
+    ],
+  },
+  {
+    path: "*",
+    loader: () => redirect('/'),
+  },
+]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

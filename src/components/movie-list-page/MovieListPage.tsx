@@ -3,35 +3,37 @@ import Header from '../header/Header';
 import GenreList from '../genre-list/GenreList';
 import SortControl from '../sort-control/SortControl';
 import MovieList from '../movie-list/MovieList';
-import MovieDetails from '../movie-details/MovieDetails';
 import ModalDialog from '../modal-dialog/ModalDialog';
 import ModalDialogScrollLock from '../modal-dialog-scroll-lock/ModalDoalogScrollLock';
 import MovieForm from '../movie-form/MovieForm';
 import { MovieInfo } from '../../shared/models/movie-info';
-import { SortOption } from '../sort-control/models/sort-control.models';
 
 import './MovieListPage.css';
 import SearchBar from '../search-bar/SearchBar';
 import { useFetchMovies } from '../../shared/hooks/useFetchMovies';
+import { useMoviesSearchParams } from '../../shared/hooks/useMoviesSearchParams';
+import { Outlet, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
 const MovieListPage: React.FC = () => {
   const genres = ['All', 'Action', 'Documentary', 'Comedy', 'Horror', 'Crime', 'Drama'];
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
-  const [selectedMovie, setSelectedMovie] = useState<MovieInfo | null>(null);
-  const [sortSelection, setSortSelection] = useState<SortOption>('title');
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [selectedGenre, setSelectedGenre] = useState<string>('All');
+  const {
+    searchQuery,
+    sortSelection,
+    selectedGenre,
+    updateSearchQuery,
+    updateSortSelection,
+    updateSelectedGenre,
+  } = useMoviesSearchParams();
+
   const [showMovieModal, setShowMovieModal] = useState<boolean>(false);
   const [editingMovie, setEditingMovie] = useState<MovieInfo | null>(null);
   const [movies, setMovies] = useState<MovieInfo[]>([]);
 
-  const handleSelect = (movie: MovieInfo) => {
-    setSelectedMovie(movie);
-  };
-
-  const handleSortChangeSelect = (sortOption: SortOption) => {
-    setSortSelection(sortOption);
-  };
+  const isMovieDetailsRoute = location.pathname !== '/';
 
   const handleMovieSubmit = (movieData: any) => {
     setShowMovieModal(false);
@@ -41,6 +43,12 @@ const MovieListPage: React.FC = () => {
   const handleOnEditMovie = (movie: MovieInfo) => {
     setEditingMovie(movie);
     setShowMovieModal(true);
+  };
+
+  const handleSelectMovie = (movie: MovieInfo) => {
+    const currentParams = searchParams.toString();
+    const url = `/movies/${movie.id}${currentParams ? `?${currentParams}` : ''}`;
+    navigate(url);
   };
 
   useFetchMovies({
@@ -56,15 +64,15 @@ const MovieListPage: React.FC = () => {
 
       <div className="app">
         <Header>
-          {selectedMovie ? (
-            <MovieDetails movie={selectedMovie} onClose={() => setSelectedMovie(null)} />
+          {isMovieDetailsRoute ? (
+            <Outlet />
           ) : (
             <>
               <button className="add-movie" onClick={() => setShowMovieModal(true)}>
                 + Add movie
               </button>
               <h1>Find your movie</h1>
-              <SearchBar initialQuery={searchQuery} onSearch={setSearchQuery} />
+              <SearchBar initialQuery={searchQuery} onSearch={updateSearchQuery} />
             </>
           )}
         </Header>
@@ -73,12 +81,16 @@ const MovieListPage: React.FC = () => {
           <GenreList
             genres={genres}
             selectedGenre={selectedGenre}
-            onSelect={setSelectedGenre}
+            onSelect={updateSelectedGenre}
           />
-          <SortControl currentSelection={sortSelection} onSelectionChange={handleSortChangeSelect} />
+          <SortControl currentSelection={sortSelection} onSelectionChange={updateSortSelection} />
         </div>
 
-        <MovieList movies={movies} onEditMovie={handleOnEditMovie} onSelectMovie={handleSelect}></MovieList>
+        <MovieList 
+          movies={movies} 
+          onSelectMovie={handleSelectMovie}
+          onEditMovie={handleOnEditMovie}
+        />
       </div>
 
       {showMovieModal && (

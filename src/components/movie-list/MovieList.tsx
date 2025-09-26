@@ -16,7 +16,7 @@ const MovieList: React.FC<MovieListProps> = ({
         <MovieTile
           key={movie.id ?? movie.title}
           movie={movie}
-          onClick={(m) => onSelectMovie?.(m)}
+          onClick={onSelectMovie || (() => {})}
           onEdit={(m) => onEditMovie?.(m)}
           onDelete={(m) => onDeleteMovie?.(m)}
         />
