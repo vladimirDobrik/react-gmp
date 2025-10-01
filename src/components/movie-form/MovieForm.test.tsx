@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import MovieForm from './MovieForm';
 
@@ -54,34 +54,56 @@ describe('MovieForm', () => {
     
     const titleInput = screen.getByLabelText(/title/i);
     const yearInput = screen.getByLabelText(/release date/i);
+    const imageUrlInput = screen.getByLabelText(/movie url/i);
+    const ratingInput = screen.getByLabelText(/rating/i);
+    const durationInput = screen.getByLabelText(/runtime/i);
+    const descriptionInput = screen.getByLabelText(/overview/i);
+    const genresSelect = screen.getByLabelText(/genre/i) as HTMLSelectElement;
     const submitButton = screen.getByRole('button', { name: /submit/i });
     
-    fireEvent.change(titleInput, { target: { value: 'New Movie' } });
-    fireEvent.change(yearInput, { target: { value: '2023' } });
+    await userEvent.type(titleInput, 'New Movie');
+    await userEvent.clear(yearInput);
+    await userEvent.type(yearInput, '2023');
+    await userEvent.type(imageUrlInput, 'https://example.com/poster.jpg');
+    await userEvent.type(ratingInput, '8.5');
+    await userEvent.type(durationInput, '2h 30m');
+    await userEvent.type(descriptionInput, 'A great movie description');
+    await userEvent.selectOptions(genresSelect, ['Drama']);
     
-    fireEvent.click(submitButton);
+    await userEvent.click(submitButton);
     
     await waitFor(() => {
       expect(mockOnSubmit).toHaveBeenCalledWith({
+        id: '',
         title: 'New Movie',
-        year: 2023,
-        genres: [],
-        imageUrl: '',
-        rating: '',
-        duration: '',
-        description: ''
+        year: '2023',
+        genres: ['Drama'],
+        imageUrl: 'https://example.com/poster.jpg',
+        rating: '08.5',
+        duration: '2h 30m',
+        description: 'A great movie description'
       });
     });
   });
 
-
   it('collects multiple selected genres from multi-select', async () => {
     render(<MovieForm onSubmit={mockOnSubmit} />);
 
+    const titleInput = screen.getByLabelText(/title/i);
+    const imageUrlInput = screen.getByLabelText(/movie url/i);
+    const ratingInput = screen.getByLabelText(/rating/i);
+    const durationInput = screen.getByLabelText(/runtime/i);
+    const descriptionInput = screen.getByLabelText(/overview/i);
     const genresSelect = screen.getByLabelText(/genre/i) as HTMLSelectElement;
-    await userEvent.selectOptions(genresSelect, ['Documentary', 'Crime']);
-
     const submitButton = screen.getByRole('button', { name: /submit/i });
+
+    await userEvent.type(titleInput, 'Test Movie');
+    await userEvent.type(imageUrlInput, 'https://example.com/poster.jpg');
+    await userEvent.type(ratingInput, '7.5');
+    await userEvent.type(durationInput, '2h 0m');
+    await userEvent.type(descriptionInput, 'A test movie description');
+
+    await userEvent.selectOptions(genresSelect, ['Documentary', 'Crime']);
     await userEvent.click(submitButton);
 
     await waitFor(() => {

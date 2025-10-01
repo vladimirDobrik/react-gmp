@@ -91,3 +91,8 @@
 .form-group textarea:invalid {
   border-color: var(--primary-color);
 }
+
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+}

@@ -21,8 +21,7 @@ describe('SortControl', () => {
     test('should render all sort options', () => {
       render(<SortControl currentSelection="releaseDate" onSelectionChange={mockOnSelectionChange} />);
       
-      const select = screen.getByTestId('sort-select');
-      const options = select.querySelectorAll('option');
+      const options = screen.getAllByRole('option');
       
       expect(options).toHaveLength(2);
       expect(options[0]).toHaveValue('releaseDate');
