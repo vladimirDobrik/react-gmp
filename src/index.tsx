@@ -5,6 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ErrorPage from './shared/error-apge/ErrorPage';
 import MovieDetailsWrapper from './components/movie-details-wrapper/MovieDetailsWrapper';
+import AddMovieForm from './components/add-movie-form/AddMovieForm';
+import EditMovieForm from './components/edit-movie-form/EditMovieForm';
+import SearchForm from './components/search-form/SearchForm';
 
 import {
   createBrowserRouter,
@@ -20,12 +23,26 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div />,
+        element: <SearchForm />,
       },
       {
-        path: "/movies/:movieId",
-        element: <MovieDetailsWrapper />,
+        path: "new",
+        element: <SearchForm />,
+        children: [
+          {
+            index: true,
+            element: <AddMovieForm />,
+          },
+        ],
       },
+        {
+          path: "movies/:movieId",
+          element: <MovieDetailsWrapper />,
+        },
+        {
+          path: "movies/:movieId/edit",
+          element: <EditMovieForm />,
+        },
     ],
   },
   {

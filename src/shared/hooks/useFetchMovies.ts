@@ -33,6 +33,9 @@ export function useFetchMovies({
         params.set("filter", selectedGenre);
       }
 
+      params.set("limit", "12");
+      params.set("searchBy", "title");
+
       return params.toString();
     };
 
